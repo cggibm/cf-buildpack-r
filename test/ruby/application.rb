@@ -15,15 +15,16 @@ get '/' do
   begin
 
     R.eval "x <- rnorm(#{sample_size})"
-    R.eval "sdx <- sd(x)"
+    R.eval "summary(x)"
+    R.eval "sd(x)"
+    R.eval "print('Hello World from R')"
 
-    html += "<p>Succeeded running R code</p>"
-    html += "<pre>x = #{R.x}</pre>"
-    html += "<pre>sd(x) = #{R.sdx}</pre>"
+    html += "<p>Suceeded running R code...</p>"
 
-  rescue => e
+  rescue
     html += "<p>Failed running R code...</p>"
-    html += "<p>#{e.message}</p>"
+  ensure
+    R.quit
   end
 
   html += "</html>"
