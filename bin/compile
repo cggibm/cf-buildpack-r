@@ -112,10 +112,6 @@ export R_INCLUDE=$R_HOME/lib64/R/include
 export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:$LD_LIBRARY_PATH"
 ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
-# trialed and errored on this; copy over libs to gfortran, so
-# that liblto_plugin.so and others can be found
-# (tried using LDFLAGS, LD_LIBRARY_PATH and LIBRARY_PATH but didn't work)
-cp -R /usr/lib/gcc/x86_64-linux-gnu/$GCC_VERSION/* /app/.apt/usr/lib/gcc/x86_64-linux-gnu/$GCC_VERSION
 
 echo "variables set" | indent
 
